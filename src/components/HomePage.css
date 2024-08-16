@@ -1,0 +1,701 @@
+*,::after, ::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0 100px;
+    background-color: white;
+}
+
+.nav{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+}
+
+.nav .logo h1{
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #000000;
+}
+
+.nav .logo b{
+    color: red;
+}
+
+.nav ul{
+    display: flex;
+    list-style: none;
+    margin-left: 100px;
+}
+
+.nav ul li{
+    margin-right: 30px;
+}
+
+.nav ul li a{
+    text-decoration: none;
+    color: #000000;
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 17px;
+}
+
+.nav ul .active::after{
+    content: '';
+    width: 50%;
+    height: 3px;
+    background-color: red;
+    display: flex;
+    position: relative;
+    margin-left: 10px;
+}
+
+input{
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.signin{
+    background: white;
+}
+
+.signup{
+    background-color: red;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+}
+
+.content{
+    display: grid;
+    grid-template-columns: 50% auto;
+    gap: 30px;
+    margin-top: 120px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.content .content-left{
+    display: block;
+    width: 100%;
+}
+
+.content .content-left .info{
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.content .content-left .info h2{
+    font-size: 60px;
+    font-family: sans-serif;
+    margin-bottom: 30px;
+}
+
+.content .content-left .info p{
+    font-size: 20px;
+    line-height: 2pc;
+    margin-bottom: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.content .content-left button{
+    padding: 10px 23px;
+    background-color: red;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.content .content-right{
+    display: block;
+    width: 100%;
+}
+
+.content .content-right img{
+    width: 400px;
+    height: auto;
+    position: relative;
+    user-select: none;
+    animation: rotate 5s linear infinite;
+}
+
+@keyframes rotate {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+.category {
+    width: 100%;
+    display: flex;
+    margin-bottom: 50px; 
+    justify-content: center;
+}
+
+.category .list-items{
+    width: 90%;
+    position: relative;
+    margin-top: 100px;
+}
+
+.category .list-items h3{
+    font-size: 20px;
+    font-weight: 600;
+    font-family: sans-serif;
+    margin-bottom: 70px;
+}
+
+.category .list-items .card-list{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.category .card-list .card{
+    width: 200px;
+    height: auto;
+    display: block;
+    padding: 10px;
+    border-radius: 10px;
+    position: relative;
+    background: #ffffff;
+    outline: 2px solid red;
+}
+
+.category .card-list .card img{
+    width: 100px;
+    height: auto;
+    bottom: 140px;
+    object-fit: cover;
+    object-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    box-shadow: 0 20px 20px red;
+    border-radius: 50%;
+}
+
+.category .card-list .card .food-title{
+    padding: 40px 0 10px;
+}
+
+.auth-forms {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-container {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.form-container input,
+.form-container button,
+.social-signin {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.form-container button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.form-container .toggle {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.form-container {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.form-container input,
+.form-container button,
+.social-signin {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.form-container button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.form-container .toggle {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.nav > div:last-child {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+
+}
+
+.signin, .signup {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    
+    
+    
+}
+
+.signin {
+    background: transparent;
+    color: #000000;
+}
+
+.signup {
+    background-color: red;
+    color: white;
+}
+
+.form-container h2 {
+    margin-bottom: 1rem;
+}
+
+.form-container button[type="submit"] {
+    margin-top: 1rem;
+}
+
+.social-signin {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.social-signin.google {
+    background-color: #1877f2;
+    color: #f3f3f3;
+    border: 1px solid #dadce0;
+}
+
+.social-signin.google:hover {
+    background-color: #f2f2f2;
+}
+
+.social-signin.facebook {
+    background-color: #1877f2;
+    color: white;
+}
+
+.social-signin.facebook:hover {
+    background-color: #166fe5;
+}
+
+.social-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.7));
+    transition: filter 0.3s ease;
+    flex-shrink: 0;
+}
+
+.social-signin:hover .social-icon {
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.9));
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 0.75rem 0;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid darkgrey;
+}
+
+.separator:not(:empty)::before {
+    margin-right: .25em;
+}
+
+.separator:not(:empty)::after {
+    margin-left: .25em;
+}
+
+.name-inputs {
+    display: flex;
+    gap: 0.5rem;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.name-inputs input {
+    flex: 1;
+    font-size: 14px;
+    width: calc(50% - 0.25rem);
+}
+
+@media (max-width: 480px) {
+    .form-container {
+        max-width: 90%;
+        padding: 1rem;
+    }
+
+    .social-signin {
+        font-size: 12px;
+    }
+
+    .social-icon {
+        width: 16px;
+        height: 16px;
+        margin-right: 4px;
+    }
+}
+.signup-page {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.signup-page h2 {
+    text-align: center;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.signup-page form {
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-page form div {
+    margin-bottom: 15px;
+}
+
+.signup-page label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.signup-page input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.signup-page button[type="submit"] {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.signup-page button[type="submit"]:hover {
+    background-color: darkred;
+}
+
+.error {
+    color: red;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.google-signup {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.google-signup button {
+    background-color: #4285F4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.google-signup button:hover {
+    background-color: #357ae8;
+}
+
+.login-link {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.login-link a {
+    color: red;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+.signin-page {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.signin-page h2 {
+    text-align: center;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.signin-page form {
+    display: flex;
+    flex-direction: column;
+}
+
+.signin-page form div {
+    margin-bottom: 15px;
+}
+
+.signin-page label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.signin-page input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.signin-page button[type="submit"] {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.signin-page button[type="submit"]:hover {
+    background-color: darkred;
+}
+
+.google-signin {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.google-signin button {
+    background-color: #4285F4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.google-signin button:hover {
+    background-color: #357ae8;
+}
+
+.signup-link {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.signup-link a {
+    color: red;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+.forgot-password {
+    text-align: right;
+    margin-bottom: 10px;
+  }
+  
+  .forgot-password a {
+    color: red;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .forgot-password a:hover {
+    text-decoration: underline;
+  }
+  
+  .forgot-password-page {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .forgot-password-page h2 {
+    text-align: center;
+    color: #000000;
+    margin-bottom: 20px;
+  }
+  
+  .forgot-password-page form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .forgot-password-page form div {
+    margin-bottom: 15px;
+  }
+  
+  .forgot-password-page label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  
+  .forgot-password-page input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .forgot-password-page button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .forgot-password-page button:hover {
+    background-color: darkred;
+  }
+  
+  .success {
+    color: green;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .auth-buttons {
+    display: flex;
+    gap: 10px;
+    position:absolute;
+    top: 30px;
+    right: 30px;
+
+  }
