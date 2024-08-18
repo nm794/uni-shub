@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './Main.css';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
+import { useCart } from './CartContext';
+
 
 
 
 function Main() {
+  const { cartItems, addToCart, removeFromCart } = useCart();
   const [sideNavOpen, setSideNavOpen] = useState(false);
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -12,6 +15,7 @@ function Main() {
   const [accountExpanded, setAccountExpanded] = React.useState(false);
   const bannerContainerRef = useRef(null);
   const [currentPage, setCurrentPage] = useState('home');
+  const navigate = useNavigate();
   const banners = [
     {
       img: "images/banner1.png",
@@ -41,6 +45,10 @@ function Main() {
 
   const toggleSideNav = () => {
     setSideNavOpen(!sideNavOpen);
+  };
+  
+  const handleCartClick = () => {
+    navigate('/cart');
   };
 
   const closeSideNav = (e) => {
@@ -109,9 +117,12 @@ function Main() {
                 <span>Search your Mart</span>
               </button>
             </div>
-            <div className="cart-icon">
-              <img src="images/cart-icon.png" alt="Cart" />
-            </div>
+            <div className="cart-icon" onClick={handleCartClick}>
+        <img src="images/cart-icon.png" alt="Cart" />
+        {cartItems.length > 0 && (
+          <span className="cart-count">{cartItems.length}</span>
+        )}
+      </div>
           </div>
           <ul>
             <li><a className="active" href="/main">Home</a></li>

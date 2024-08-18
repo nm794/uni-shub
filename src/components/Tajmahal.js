@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './Main.css';
+import { useNavigate } from 'react-router-dom';
+import { useCart } from './CartContext';
 
-function Main() {
+function Tajmahal() {
+  const { cartItems, addToCart, removeFromCart } = useCart();
   const [sideNavOpen, setSideNavOpen] = useState(false);
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -10,7 +13,26 @@ function Main() {
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const bannerContainerRef = useRef(null);
   const [currentPage, setCurrentPage] = useState('home');
+  const [addedItems, setAddedItems] = useState({});
+  const navigate = useNavigate();
 
+  const handleCartClick = () => {
+    navigate('/cart');
+  };
+  
+  const handleAddToCart = (item) => {
+    addToCart({
+      id: item.name, // Using name as id for simplicity. Consider using a unique id if available.
+      name: item.name,
+      price: parseFloat(item.price.replace('$', '')),
+      image: item.image
+    });
+    setAddedItems(prev => ({ ...prev, [item.name]: (prev[item.name] || 0) + 1 }));
+  };
+  const handleRemoveFromCart = (item) => {
+    removeFromCart(item.name);
+    setAddedItems(prev => ({ ...prev, [item.name]: Math.max((prev[item.name] || 0) - 1, 0) }));
+  };
   const banners = [
     {
       img: "images/banner1.png",
@@ -28,7 +50,9 @@ function Main() {
       img: "images/banner3.png",
       title: "Free Delivery on  group orders Above $50",
       description: "Wait less, save more",
+      customClass: "smaller-font-banner",
       button: { text: "Order Now", link: "/order", class: "green-btn" }
+       
     },
     {
       img: "images/banner4.png",
@@ -39,7 +63,79 @@ function Main() {
   ];
 
   const menuCategories = {
-    'All': [],
+    'All': [
+      {name: 'Chicken Over Rice', price: '$7.00', image: 'images/lamb-over-rice.jpg' },
+      { name: 'Lamb Over Rice', price: '$7.00', image: 'images/lamb-over-rice.jpg' },
+      { name: 'Shrimp Over Rice', price: '$8.00', image: 'images/food-trucks-image.jpeg' },
+      { name: 'Samosa Over Rice', price: '$8.00', image: 'images/samosa-over-rice.jpg' },
+      { name: 'Lamb Steak Over Rice', price: '$9.00', image: 'images/lamb-over-rice.jpg' },
+      {name: 'Chicken Over Rice', price: '$7.00', image: 'images/lamb-over-rice.jpg' },
+      { name: 'Lamb Over Rice', price: '$7.00', image: 'images/lamb-over-rice.jpg' },
+      { name: 'Shrimp Over Rice', price: '$8.00', image: 'images/food-trucks-image.jpeg' },
+      { name: 'Samosa Over Rice', price: '$8.00', image: 'images/samosa-over-rice.jpg' },
+      { name: 'Lamb Steak Over Rice', price: '$9.00', image: 'images/lamb-over-rice.jpg' },
+      { name: 'Falafel Over Rice', price: '$8.00', image: 'images/lamb-over-rice.jpg' },
+      { name: 'Falafel & Lamb Over Rice', price: '$9.00', image: 'images/food-trucks-image.jpeg' },
+      { name: 'Falafel & chicken Over Rice', price: '$9.00', image: 'images/food-trucks-image.jpeg' },
+      { name: 'Lamb & Steak Over Rice', price: '$11.00', image: 'images/lamb-over-rice.jpg' },
+      { name: 'Mix Over Rice', price: '$8.00', image: 'images/lamb-over-rice.jpg' },
+      { name: 'Chicken Steak Over Rice', price: '$11.00', image: 'images/food-trucks-image.jpeg' },
+      { name: 'Steak Over Rice', price: '$9.00', image: 'images/lamb-over-rice.jpg' },
+      { name: 'Falafel Steak Over Rice', price: '$9.00', image: 'images/lamb-over-rice.jpg' },
+      { name: 'Lamb Steak Falafel Over Rice', price: '$12.00', image: 'images/food-trucks-image.jpeg' },
+      { name: 'Chicken Steak Falafel Over Rice', price: '$12.00', image: 'images/lamb-over-rice.jpg' },
+      { name: 'Samosa Falafel Over Rice', price: '$9.00', image: 'images/lamb-over-rice.jpg' },
+      { name: 'Samosa Mozzarella Steak', price: '$9.00', image: 'images/food-trucks-image.jpeg' },
+      { name: 'Mozzarella Steak Over Rice', price: '$9.00', image: 'images/lamb-over-rice.jpg' },
+      { name: 'Samosa Mozzarella Steak Falafel Over Rice', price: '$11.00', image: 'images/lamb-over-rice.jpg' },
+      { name: 'Falafel Veggie Burger', price: '$10.00', image: 'images/lamb-over-rice.jpg' },
+      { name: 'Lamb Mozzarella Steak', price: '$10.00', image: 'images/lamb-over-rice.jpg' },
+      { name: 'Chicken Mozzarella Steak', price: '$10.00', image: 'images/lamb-over-rice.jpg' },
+      { name: 'Steak Mozzarella', price: '$10.00', image: 'images/lamb-over-rice.jpg' },
+      { name: 'Steak& Mozzarella Steak', price: '$10.00', image: 'images/lamb-over-rice.jpg' },
+      { name: 'Chicken Tender Over Rice', price: '$10.00', image: 'images/lamb-over-rice.jpg' },
+      { name: 'Chicken Gyro', price: '$5.00', image: 'images/chicken gyro.jpg' },
+      { name: 'Lamb Gyro', price: '$5.00', image: 'images/chicken gyro.jpg' },
+      { name: 'Mix Gyro', price: '$5.00', image: 'images/chicken gyro.jpg' },
+      { name: 'Steak Gyro', price: '$5.00', image: 'images/chicken gyro.jpg' },
+      { name: 'Veggy Gyro', price: '$5.00', image: 'images/chicken gyro.jpg' },
+      { name: 'Lamb Steak Gyro', price: '$6.00', image: 'images/chicken gyro.jpg' },
+      { name: 'Onion Rings', price: '$4.00', image: 'images/onion-rings.jpg' },
+      { name: 'Chicken Nuggets', price: '$5.00', image: 'images/chicken-nuggets.jpeg' },
+      { name: 'Chicken Tender', price: '$7.00', image: 'images/ChickenTenders.jpg' },
+      { name: 'Chicken Wings', price: '$7.00', image: 'images/chicken-wings.jpg' },
+      { name: 'Samosa', price: '$2.00', image: 'images/samosa.jpg' },
+      { name: 'Samosa on Roll', price: '$3.00', image: 'images/samosa-on-roll.jpg' },
+      { name: 'Samosa Tiki', price: '$7.00', image: 'images/samosa-on-roll.jpg' },
+      { name: 'Alu Tika', price: '$7.00', image: 'images/alu-tika.jpg' },
+      { name: 'Anda Palac', price: '$5.00', image: 'images/anda-palac.jpg' },
+      { name: 'Baga Ravi', price: '$8.00', image: 'images/baga-ravi.jpg' },
+      { name: 'Mota Ravi', price: '$8.00', image: 'images/mota-ravi.jpg' },
+      { name: 'Motimorgi', price: '$8.00', image: 'images/motimorgi.jpg' },
+      { name: 'Tandori', price: '$8.00', image: 'images/tandori.jpg' },
+      { name: 'Davi Dosa', price: '$8.00', image: 'images/davi-dosa.jpg' },
+      { name: 'Veggie Davi Dosa', price: '$7.00', image: 'images/veggie-davi-dosa.jpg' },
+      { name: 'Lamb Tika', price: '$5.00', image: 'images/lamb-tika.jpg' },
+      { name: 'Chicken Tika', price: '$5.00', image: 'images/chicken-tika.jpg' },
+      { name: 'Chicken Cheese Steak', price: '$8.00', image: 'images/chicken-cheese-steak.jpg' },
+      { name: 'Beef Steak', price: '$8.00', image: 'images/beaf-steak.jpg' },
+      { name: 'Fat Burger', price: '$8.00', image: 'images/fat-burger.jpg' },
+      { name: 'Chicken Hero', price: '$8.00', image: 'images/chicken-hero.jpg' },
+      { name: 'Lamb Hero', price: '$8.00', image: 'images/lamb-hero.jpg' },
+      { name: 'Mix Hero', price: '$9.00', image: 'images/mix-hero.jpg' },
+      { name: 'Chicken/Bacon/Cheddar-Ranch', price: '$10.00', image: 'images/cheddar-ranch.jpg' },
+      { name: 'Fat Mena', price: '$12.00', image: 'images/fat-mena.jpg' },
+      { name: 'Fat Joe', price: '$12.00', image: 'images/fat-joe.jpg' },
+      { name: 'Big Momma', price: '$10.00', image: 'images/big-momma.jpg' },
+      { name: 'Fat Koko', price: '$11.00', image: 'images/fat-koko.jpg' },
+      { name: 'Big Daddy', price: '$11.00', image: 'images/big-daddy.jpg' },
+      { name: 'Big Babe', price: '$8.00', image: 'images/big-babe.jpg' },
+      { name: 'Fat Steven', price: '$8.00', image: 'images/fat-steven.jpg' },
+      { name: 'Fat Brandon', price: '$12.00', image: 'images/fat-brandon.jpg' },
+      { name: 'Veggie Burger', price: '$5.00', image: 'images/burger.jpg' },
+      { name: 'Veggie Pizza Burger', price: '$6.00', image: 'images/burger.jpg' },
+      { name: 'Veggie Hero', price: '$5.00', image: 'images/pizza-burger.jpg' }
+    ],
     'Signature Dishes': [
       {name: 'Chicken Over Rice', price: '$7.00', image: 'images/lamb-over-rice.jpg' },
       { name: 'Lamb Over Rice', price: '$7.00', image: 'images/lamb-over-rice.jpg' },
@@ -73,6 +169,18 @@ function Main() {
       { name: 'Steak Mozzarella', price: '$10.00', image: 'images/lamb-over-rice.jpg' },
       { name: 'Steak& Mozzarella Steak', price: '$10.00', image: 'images/lamb-over-rice.jpg' },
       { name: 'Chicken Tender Over Rice', price: '$10.00', image: 'images/lamb-over-rice.jpg' },
+      { name: 'Chicken Burger', price: '$5.00', image: 'images/burger.jpg' },
+      { name: 'Veggie Burger', price: '$5.00', image: 'images/burger2.png' },
+      { name: 'Beef Burger', price: '$5.00', image: 'images/burger.jpg' },
+      { name: 'Falafel Burger', price: '$5.00', image: 'images/burger.jpg' },
+      { name: 'Steak Burger', price: '$6.00', image: 'images/burger2.png' },
+      { name: 'Samosa Burger', price: '$5.00', image: 'images/burger.jpg' },
+      { name: 'Cajun Fries', price: '$4.00', image: 'images/cheddar-ranch.jpg' },
+      { name: 'Regular Fries', price: '$4.00', image: 'images/regular-fries.jpg' },
+      { name: 'Fat Liv', price: '$12.00', image: 'images/fat-liv.jpg' },
+      { name: 'Fish & Chips', price: '$8.00', image: 'images/fish-chips.jpg' },
+      { name: 'Fat Farag', price: '$8.00', image: 'images/fat-farag.jpg' },
+      { name: 'Fat Maryann', price: '$8.00', image: 'images/fat-maryann.jpg' },
     ],
     'Gyro': [
       { name: 'Chicken Gyro', price: '$5.00', image: 'images/chicken gyro.jpg' },
@@ -235,8 +343,11 @@ function Main() {
                 <span>Search your Mart</span>
               </button>
             </div>
-            <div className="cart-icon">
-              <img src="images/cart-icon.png" alt="Cart" />
+            <div className="cart-icon"  onClick={handleCartClick}>
+              <img src="images/cart-icon.png" alt="Cart"  />
+              {cartItems.length > 0 && (
+              <span className="cart-count">{cartItems.length}</span>
+               )}
             </div>
           </div>
           <ul>
@@ -280,7 +391,7 @@ function Main() {
                  transition: isHovered ? 'none' : 'transform 0.5s ease'
                }}>
             {banners.map((banner, index) => (
-              <div key={index} className="banner">
+              <div className={`banner ${banner.customClass || ''}`} key={index}>
                 <img src={banner.img} alt={`Banner ${index + 1}`} />
                 <div className="banner-content">
                   <h3>{banner.title}</h3>
@@ -343,6 +454,7 @@ function Main() {
           </div>
         </div>
       </section>*/}
+      <div className="section-spacer"></div>
       <div className="food-truck-section">
         <div className="food-truck-header">
           <h2>Taj Mahal Food Truck</h2>
@@ -398,24 +510,33 @@ function Main() {
             </ul>
           </nav>
           <div className="menu-items">
-            <h3>{selectedCategory}</h3>
-            {chunkedMenuItems(selectedCategory).map((row, rowIndex) => (
-              <div key={rowIndex} className="menu-row">
-                {row.map(item => (
-                  <div key={item.name} className="menu-item">
-                    <div className="image-container">
-                      <img src={item.image} alt={item.name} />
-                      <button className="add-to-cart-btn">+</button>
-                    </div>
-                    <div className="item-info">
-                      <span className="item-name">{item.name}</span>
-                      <span className="item-price">{item.price}</span>
-                    </div>
+      <h3>{selectedCategory}</h3>
+      {chunkedMenuItems(selectedCategory).map((row, rowIndex) => (
+        <div key={rowIndex} className="menu-row">
+          {row.map(item => (
+            <div key={item.name} className="menu-item">
+              <div className="image-container">
+                <img src={item.image} alt={item.name} />
+                {addedItems[item.name] ? (
+                  <div className="item-quantity">
+                    <button onClick={() => handleRemoveFromCart(item)}>-</button>
+                    <span>{addedItems[item.name]}</span>
+                    <button onClick={() => handleAddToCart(item)}>+</button>
                   </div>
-                ))}
+                ) : (
+                  <button className="add-to-cart-btn" onClick={() => handleAddToCart(item)}>+</button>
+                )}
               </div>
-            ))}
-          </div>
+              <div className="item-info">
+                <span className="item-name">{item.name}</span>
+                <span className="item-price">{item.price}</span>
+              </div>
+              {addedItems[item.name] && <div className="added-to-cart-msg">Added to cart!</div>}
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
         </div>
       </section>
       </div>
@@ -439,4 +560,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default Tajmahal;

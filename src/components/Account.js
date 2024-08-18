@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './Main.css';
 import axios from 'axios';
+import { useCart } from './CartContext';
 
 function parseJwt(token) {
   try {
@@ -12,6 +13,7 @@ function parseJwt(token) {
 }
 
 function Account() {
+  const { cartItems, addToCart, removeFromCart,updateQuantity } = useCart();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -78,6 +80,9 @@ function Account() {
   const handleInputChange = (e) => {
     setEditedUser({ ...editedUser, [e.target.name]: e.target.value });
   };
+  const handleCartClick = () => {
+    navigate('/cart');
+  };
 
   const handleSaveClick = async () => {
     try {
@@ -142,9 +147,12 @@ function Account() {
                 <span>Search NJIT Mart</span>
               </button>
             </div>
-            <div className="cart-icon">
-              <img src="/images/cart-icon.png" alt="Cart" />
-            </div>
+            <div className="cart-icon" onClick={handleCartClick}>
+        <img src="images/cart-icon.png" alt="Cart" />
+        {cartItems.length > 0 && (
+          <span className="cart-count">{cartItems.length}</span>
+        )}
+      </div>
           </div>
           <ul>
             <li><Link to="/Main">Home</Link></li>
