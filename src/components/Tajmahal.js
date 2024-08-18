@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from './CartContext';
 
 function Tajmahal() {
-  const { cartItems, addToCart, removeFromCart } = useCart();
+  const { cartItems, addToCart, removeFromCart,updateQuantity } = useCart();
   const [sideNavOpen, setSideNavOpen] = useState(false);
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
