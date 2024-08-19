@@ -16,6 +16,8 @@ app.config['JWT_SECRET_KEY'] = 'your-secret-key'
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=1)
 jwt = JWTManager(app)
 
+
+
 @app.route('/api/signup', methods=['POST'])
 def signup():
     data = request.json
@@ -131,6 +133,28 @@ def update_user_info(user_id):
     except Exception as e:
         print(f"Error in update_user_info: {str(e)}")
         return jsonify({"error": str(e)}), 500
+    
+
+
+@app.route('/api/cart', methods=['GET', 'POST'])
+@jwt_required()
+def handle_cart():
+    current_user_id = get_jwt_identity()
+    
+    if request.method == 'GET':
+        user_cart = mongo.db.carts.find_one({"user_id": current_user_id})
+        if user_cart:
+            return jsonify(user_cart['items']), 200
+        return jsonify([]), 200
+    
+    elif request.method == 'POST':
+        cart_items = request.json
+        mongo.db.carts.update_one(
+            {"user_id": current_user_id},
+            {"$set": {"items": cart_items}},
+            upsert=True
+        )
+        return jsonify({"message": "Cart updated successfully"}), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
