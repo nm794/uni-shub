@@ -23,7 +23,7 @@ export function CartProvider({ children }) {
         const updatedItems = [...prevItems, { ...item, quantity: 1 }];
         console.log('Cart after adding:', updatedItems);
         return updatedItems;
-      });b
+      });
   };
 
   const removeFromCart = (itemId) => {
