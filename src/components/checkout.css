@@ -84,9 +84,11 @@ input {
 .order-summary {
   flex: 1;
   background-color: white;
-  padding: 20px;
+  padding: 2ch;
   border-radius: 4px;
   box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  margin-top: 20%;
+  
 }
 
 .order-summary ul {
@@ -110,6 +112,8 @@ input {
   font-size: 18px;
   cursor: pointer;
   margin-top: 20px;
+  margin-left: 65%;
+  
 }
 
 .place-order-btn:hover {
