@@ -19,38 +19,19 @@
 
 .checkout-content {
   display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 
-.checkout-sections {
-  flex: 2;
-  display: flex;
-}
-
-.section-buttons {
-  width: 200px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.section-buttons button {
+.section-button {
   padding: 10px;
-  background-color: #f0f0f0;
+  color: black;
   border: none;
   cursor: pointer;
   text-align: left;
   border-radius: 4px;
-}
-
-.section-buttons button.active {
-  background-color: #007bff;
-  color: white;
-}
-
-.section-content {
-  flex-grow: 1;
-  padding: 0 20px;
+  width: 30%;
+  height: 45px;
 }
 
 .checkout-section {
@@ -58,6 +39,19 @@
   padding: 20px;
   border-radius: 4px;
   box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  width: 30%;
+}
+
+
+
+.order-summary {
+  background-color: white;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  width: 35%;
+  margin-left: 620px;
+  
 }
 
 input {
@@ -81,29 +75,24 @@ input {
   border-radius: 4px;
 }
 
-.order-summary {
-  flex: 1;
-  background-color: white;
-  padding: 2ch;
-  border-radius: 4px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
-  margin-top: 20%;
-  
+.payment-fields {
+  margin-top: 20px;
 }
 
 .order-summary ul {
   list-style-type: none;
   padding: 0;
+  
 }
 
 .order-summary li {
   margin-bottom: 10px;
+
 }
 
 .place-order-btn {
   display: block;
-  width: 25%;
-  height: 44px;
+  width: 32%;
   padding: 15px;
   background-color: red;
   color: white;
@@ -112,10 +101,14 @@ input {
   font-size: 18px;
   cursor: pointer;
   margin-top: 20px;
-  margin-left: 65%;
-  
+  margin-left: 620px;
+  height: 45px;
 }
 
 .place-order-btn:hover {
-  background-color: red;
+  background-color: darkred;
+}
+
+.checkout-container h1 {
+  margin-bottom: 30px;
 }
